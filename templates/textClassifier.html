@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarizer & Entity Checker</title>
+
+    <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="static/css/homeStyle.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="static/css/textTypeAnimation.css" rel="stylesheet" />
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+   <style>
+      .textAnimation{
+        color: white; 
+        font-size: 40px; 
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        transition: font-size 2s ease-in-out;
+      }
+    .textAnimation:hover{
+      font-size: 60px;
+    }
+
+
+    footer{
+    background-color: #111;
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 40px ;
+    color: white;
+  }
+.footer-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center ;
+}
+  
+.footer-content h3{
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 3rem;
+ 
+
+}
+
+.footer-content p{
+	max-width:500px;
+	margin:10px auto;
+	line-height:28px;
+	font-size:14px;
+   
+}
+.socials{
+	list-style: none;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.socials li{
+	margin: 0 10px;
+	align-items: center;
+	
+}
+.socials a{
+	text-decoration:none;
+	color: white;	
+}
+.socials a i{
+	font-size:1.1rem;
+}
+.socials a:hover i{
+	color:blue;
+}
+.footer-bottom{
+	background:#000;
+	width:100vw;
+	padding:10px 0;
+	text-align: center;
+	
+}
+.footer-bottom p{
+	font-size: 14px;
+	word-spacing:2px;
+	text-align: center;
+	text-transform:capitalize;
+
+}
+
+.footer-bottom span{
+	text-transform: uppercase;
+	opacity: .4;
+	font-weight: 200;
+}
+
+   </style>
+</head>
+<body>
+  <div style="background-color: #8b8484; font-size: 30px;" class="navbar-fixed">
+    <nav style="width: 100%;" class="grey darken-4" role="navigation">
+     <div style="width: 20%; float: left;" class="nav-wrapper container">
+      <a style="float: left; margin-right: 1px; color: white;" href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+       <a id="logo-container" href="#" class="brand-logo" style="color: white;">Summaryzer</a>
+        </div>
+      <div>
+        <ul style="list-style-type: none;" class="right hide-on-med-and-down">
+              <li style="margin-left: 5px;"><a href="{{url_for('Main_home')}}">Home</a></li>
+              
+              <li style="margin-left: 5px;"><a href="{{url_for('home')}}">Summarizer</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('compareSummary')}}">Compare Summarizers</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('textType')}}">Text Classifier</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('wordinfo')}}">Token information</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('index_saima')}}">Entity Checker</a></li>
+                <li style="margin-left: 5px;"><a href="https://drive.google.com/file/d/1EmRrHQ2VPFoUMnOxgCJyyRh-iUElbowC/view?usp=sharing">Guideline</a></li>
+          </ul>
+       </div>
+     
+   </nav>
+ </div>
+ <ul style="list-style-type: none; background-color: black;" id="nav-mobile" class="sidenav">
+        <li><h2></h2></li>
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('Main_home')}}">Home</a></li>
+
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('home')}}">Summarizer</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('compareSummary')}}">Compare</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('textType')}}">Text Classifier</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('wordinfo')}}">Token information</a></li>
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('basic_api')}}"> Token information using API</a></li><br>
+        <br><li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('index_saima')}}">Entity Checker</a></li>
+    <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="https://drive.google.com/file/d/1EmRrHQ2VPFoUMnOxgCJyyRh-iUElbowC/view?usp=sharing">Guideline</a></li>
+  </ul>
+<!--Slider -->
+<section class="slider">
+  <div id="index-banner" class="parallax-container">
+     <ul class="slides">
+      <li>
+        <img src="https://few-shot-text-classification.fastforwardlabs.com/figures/ff18-cover-splash.png" alt="Unsplashed background img 1" alt="">
+        <div class="caption center-align">
+          <h2 style="font-weight: bolder ;color: hsl(0, 0%, 0%); text-shadow: 2px 2px 2px rgb(243, 238, 238);">Text Summarization Simplified</h2>
+          <h5 style="font-weight: bolder; color: rgb(1, 20, 22);" class="dark gray-text text-lighten-3 hide-on-small-only">
+           Using SpaCy, Gensim, NLTK and Sumy Summarizers
+          </h5>
+         
+           <div class="row center">
+          <a href="{{url_for('home')}}" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Refresh</a>
+        </div>
+        </div>
+      </li>
+      <li>
+       <img src="https://krakensystems.co/assets/images/uploads/2018-09-17-cover.jpg" alt="Unsplashed background img 1">
+        <div class="caption left-align">
+          <h2 style="font-weight: bolder ;color: black; text-shadow: 2px 2px 2px rgb(243, 238, 238);">Text Classification</h2>
+          <h5 style="font-weight: bolder; color: rgb(4, 48, 54);" class="black-text text-lighten-3 hide-on-small-only">
+           Using Machine Learning
+          </h5>
+          <a href="#aboutapp" class="btn btn-large waves-effect waves-light light-blue lighten-1">Learn More</a>
+        </div>
+      </li>
+   
+    </ul>
+  </div>
+</section>
+
+<!--                start compare classifier            -->
+<!-- Start -->
+<div class="container">
+  <div class="section">
+     
+    <!--   Icon Section   -->
+    <div style="text-align: center;" class="row">
+      <div class="input-field col s12 m10">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">compare</i></h2>
+         <form method="POST" action="/classify">
+       <textarea style="width: 60%;" name="rawtext" cols="5" rows="10" class="form-control" required="true" placeholder="Enter Text Here"></textarea>
+        
+       <br/>
+       <button class="btn btn-small waves-effect waves-light  light-blue lighten-1" type="reset">Clear</button>
+        <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Classify</button>
+        
+      </form>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+            <div style="text-align: center;" class="row">
+            <div class="input-field col s12 m10">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+               <form method="POST" action="/classifyURL">
+             <input style="width: 60%; border: 1px solid black;" type="text" name="raw_url" placeholder="Enter URL Here" required="true">
+             <br>
+             <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">Clear</button>
+              <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Classify</button>
+              
+            </form>
+              </div>
+            </div>
+    
+          </div>
+
+
+          <!--    text classifier page --!>
+
+          <!--image to text-->
+          <div style="text-align: center;" class="text-center">
+            <h1 style="font-size: 30px;">UPLOAD IMAGE BELOW</h1>
+            <form method="POST" enctype="multipart/form-data" action="/pictureTT">
+                <input type="file" class="btn btn-dark" name="photo"><br><br>
+                <input type = 'submit' class="btn btn-dark" >
+            </form>
+        </div>
+    <br><br>
+    <!--speech to text-->
+    <div style="text-align: center;" class="text-center">
+      <h1 style="font-size: 30px;">UPLOAD AUDIO BELOW</h1>
+      <form method="POST" enctype="multipart/form-data" action="/audioTT">
+          <input type="file" class="btn btn-dark" name="audio"><br><br>
+          <input type = 'submit' class="btn btn-dark" >
+      </form>
+  </div>
+  <br><br>
+  <!--pdf to text-->
+  <div style="text-align: center;" class="text-center">
+    <h1 style="font-size: 30px;">UPLOAD PDF BELOW</h1>
+    <form method="POST" enctype="multipart/form-data" action="/pdfTT">
+        <input type="file" class="btn btn-dark" name="pdf"><br><br>
+        <input type = 'submit' class="btn btn-dark" >
+    </form>
+</div>
+<br><br>
+<!--doc to text-->
+<div style="text-align: center;" class="text-center">
+  <h1 style="font-size: 30px;">UPLOAD DOC BELOW</h1>
+  <form method="POST" enctype="multipart/form-data" action="/docTT">
+      <input type="file" class="btn btn-dark" name="doc"><br><br>
+      <input type = 'submit' class="btn btn-dark" >
+  </form>
+</div>
+<br><br>
+<!--video to text-->
+<div style="text-align: center;" class="text-center">
+  <h1 style="font-size: 30px;">UPLOAD VIDEO BELOW</h1>
+  <form method="POST" enctype="multipart/form-data" action="/videoTT">
+      <input type="file" class="btn btn-dark" name="video"><br><br>
+      <input type = 'submit' class="btn btn-dark" >
+  </form>
+</div>
+
+  </div>
+</div>
+<!-- End -->
+
+<!-- Results -->
+<section class="section section-solutions-about grey lighten-3 ">
+<div style="text-align: center; padding-left: 20px; padding-right: 20px;" class="container">
+    <div class="row">
+      <div class="col s12 m8">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">compare</i></h2>
+          <h5 class="center">Your Text</h5>
+
+          <p class="light">{{ctext}}</p>
+          <div class="alert alert-info" role="alert"><p>Time Elapsed: <span style="color:#0091EA;">{{ final_time }} </span></p><br/>
+            <p>Reading Time: <span style="color:#0091EA;">{{ final_reading_time }} </span></p>
+      </div>
+        </div>
+      </div>
+    </div>    
+</div>
+<br>
+</section>
+
+
+  <!-- SECTION: RESULTS FOR DIFFERENT CLASSIFIERS -->
+<section class="section section-solutions-about grey lighten-3 ">
+  <div style="margin-left: 20px;" class="container">
+    <div class="row">
+      <div class="col s12 m12 offset-m1">
+        <div class="row">
+          <div style="margin-right: 50px;" class="col s12">
+            <ul style="border-radius: 40px; box-shadow: 5px 5px 10px black;" class="tabs">
+              <li class="tab col s3">
+                <a style="font-size: 27px; font-family: 'Times New Roman', Times, serif;" href="#tab1" class="blue-text">Logistic regression</a>
+              </li>
+              <li class="tab col s3">
+                <a style="font-size: 27px; font-family: 'Times New Roman', Times, serif;" href="#tab2" class="blue-text">Random forest</a>
+              </li>
+              <li class="tab col s3">
+                <a style="font-size: 27px; font-family: 'Times New Roman', Times, serif;" href="#tab3" class="blue-text">Decision tree</a>
+              </li>
+              <li class="tab col s3">
+                <a style="font-size: 27px; font-family: 'Times New Roman', Times, serif;" href="#tab4" class="blue-text">Naive Bayes</a>
+              </li>
+          
+            </ul>
+          </div>
+          <div style="text-align: center;" id="tab1" class="col s12">
+            <br><h5>Logistic regression</h5>
+            <div class="grey lighten-1"><p style="font-family: 'Times New Roman', Times, serif; font-size:54px;">{{ finalResultLR }}</p></div>
+        
+              
+          </div>
+          <div style="text-align: center;" id="tab2" class="col s12">
+            <br><h5>Random forest</h5>
+                         
+              <div class="grey lighten-2"><p style="font-family: 'Times New Roman', Times, serif; font-size:54px;">{{ finalResultRF }}</p></div>
+       
+          </div>
+          <div style="text-align: center;" id="tab3" class="col s12">
+            <br><h5>Decision tree</h5>
+            <div class="grey lighten-1"><p style="font-family: 'Times New Roman', Times, serif; font-size:54px;">{{ finalResultDT }}</p></div>
+         </div>
+
+          <div style="text-align: center;" id="tab4" class="col s12">
+            <br>
+            <h5>Naive Bayes</h5>
+            
+              <div class="grey lighten-2"><p style="font-family: 'Times New Roman', Times, serif; font-size:54px;">{{ finalResultNB }}</p></div>
+          </div>
+     
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--    end compare text classifier    -->
+
+
+
+        <!-- Footer start -->
+		<footer>
+		<div class = "footer-content">
+		<h3 style="Arial, Helvetica, sans-serif">SUMMARIZE KORO</h3>
+		<p style="Arial, Helvetica, sans-serif"> A web application for Text Summarization, Entity Check & Word Information & <br> it is build with NLP and ML.</p>
+		<ul class = "socials">
+		<li><a href="https://facebook.com/jcharistech" target="_blank" class="white-text" ><i class="fab fa-facebook fa-4x"></i></a></li>
+		<li><a href="https://facebook.com/jcharistech" target="_blank" class="white-text"><i class="fab fa-twitter fa-4x"></i></a></li>
+		<li><a href="https://github.com/rokeya/" target="_blank" class="white-text"><i class="fab fa-github-square fa-4x"></i></a></li>
+		<li><a href="https://gh.linkedin.com/in/jesiel-emmanuel-agbemabiase-6935b690" target="_blank" class="white-text"><i class="fab fa-linkedin fa-4x"></i></a> </li>
+		<li><a href="https://www.youtube.com/channel/UC2wMHF4HBkTMGLsvZAIWzRg" target="_blank" class="white-text"><i class="fab fa-youtube-square fa-4x"></i></a></li>
+		<li></li>
+		<li></li>
+		
+		</ul>
+		</div>
+
+		<div class = "footer-bottom" >
+		    <p>&copy; 2021 summarize koro, Devolped by Summarize Koro team</p>
+        </div>
+		</footer>
+
+		
+		<!-- Footer ends -->
+
+
+
+
+
+    
+    
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="static/js/materialize.js"></script>
+    <script src="static/js/init.js"></script>
+  <!-- Finished -->
+    
+</body>
+</html>

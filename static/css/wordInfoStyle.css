@@ -1,0 +1,98 @@
+
+/* :root{
+    --primary-color: rgba(51, 147, 167, 0.15);
+    --overlay-color: rgba(13, 133, 156, 0);
+    --menu-speed: 0.75s;
+} */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+
+    font-family: 'Heebo', sans-serif;
+    line-height: 1.4;
+}
+
+ .container{
+    max-width: 960px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 3rem;
+}
+
+
+.showcase{
+    background-color: var(--primary-color);
+    color: #fff;
+    height: 100%;
+    position: relative;
+}
+
+.showcase:before{
+    content: '';
+     background: url('../img/hatijpg') no-repeat center center/cover; 
+    color: #fff;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.showcase{
+    background-color: var(--primary-color);
+    color: #fff;
+    height: 100%;
+    position: relative;
+}
+
+.showcase .showcase-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+ 
+}
+ 
+
+/* textarea design*/
+/*.box{
+    width: 250px;
+    height: 40%;
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: gray;
+}
+
+.input{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none ;
+    border: 2px solid #03d392;
+    color: #03d392 ;
+
+}
+
+span{
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+
+}
+
+input: focus + span{
+    top:0;
+
+}*/
+

@@ -1,0 +1,186 @@
+ /* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 239, 239);
+}
+
+
+ .first_layer{
+    height: 700px;
+    width: 90%;
+    padding:20px
+    border: 2px solid rgb(133, 133, 150);
+    background-color: rgb(133, 133, 150);
+    margin: 0 auto;
+    border-radius: 5px;
+   
+    position: relative;
+    top: 30px;
+
+} 
+
+.container{
+    
+    width: 100%;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+   
+
+}
+
+.cards_wrap{
+    padding: 20px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    
+}
+
+.cards_wrap .card_item{
+    padding: 15px 25px;
+    width: 30%;
+    
+    
+}
+
+.cards_wrap .card_inner{
+    background: #fff;
+    border-radius: 5px;
+    padding: 35px 20px;
+    min-width: 225px;
+    min-height: 315px;
+    
+}
+
+.cards_wrap .card_inner img{
+    height: 80px;
+    width: 80px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+
+}
+
+.cards_wrap .card_inner .role_name{
+    color: #e36686;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+} */
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family:sans-serif;
+}
+  
+body{
+   display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #16384c;
+}
+
+.container{
+    position: relative;
+    width: 900px;  /* total width change*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+.container .card{
+    position: relative;
+    max-width: 245px;  /*card width change */
+    height: 215px;
+    background: #fff;
+    margin: 30px 10px;
+    padding: 20px 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    transition: 0.3s ease-in-out;
+}
+
+.container .card:hover{
+    height: 320px;
+}
+
+.container .card .imgbx{
+    position: relative;
+    width: 200px; /* image width change*/
+    height: 200px;  /* image width change*/
+    top: -60px;
+    z-index: 1;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.container .card .imgbx img{
+    position: relative;
+    max-width: 300px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.container .card .content{
+    position: relative;
+    margin-top: -140px;
+    padding: 10px 15px;
+    text-align: center;
+    color: #111;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.05s ease-in-out ;
+}
+
+.btn{
+    width: 100px;
+    height: 40px;
+    border: none;
+    color:white ;
+    background-color: rgb(255,0,68);
+    border-radius: 4px;
+    box-shadow: 4px;
+    font-size: 1.2rem;
+    font-family:Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+    outline: none;
+    text-align: center;
+
+}
+
+.btn:hover{
+    /* box-shadow: inset 300px 0 0 0 #f9e506; */
+    background-color: blue;
+    cursor: pointer;
+    color: #111;
+
+}
+
+.container .card:hover .content{
+
+    visibility: visible;
+    opacity: 1;
+    margin-top: -40px;
+    transition-delay: 0.14s;
+}

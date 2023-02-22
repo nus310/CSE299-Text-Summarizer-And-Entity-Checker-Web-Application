@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> base</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+  <!-- <div class="menu-wrap">
+     <input type="checkbox" class="toggler">
+     <div class="hamburger"><div></div></div>
+        <div class="menu">
+          <div> 
+            <div> 
+              <ul>
+                <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home </a></li>
+                <li><a href="#"><i class="fas fa-table"></i>Dashboard </a></li>
+                <li><i class="fas fa-table"></i>Tables<i class="fas fa-angle-right dropdown"></i></a></li>
+                <li><i class="fas fa-desktop"></i>Home </a></li>
+              </ul? -->
+            
+  <div class="menu-btn" class="toggler">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  
+ 
+ 
+
+    <div class="side-bar">
+
+      <div class="close-btn">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="menu">
+            <div class="item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home </a></div>
+            <div class="item"><a href="#"><i class="fas fa-table"></i>Dashboard </a></div>
+            <div class="item">
+                <a class="sub-btn"><i class="fas fa-table"></i>Tables<i class="fas fa-angle-right dropdown"></i></a>
+                <div class="sub-menu">
+                  <a href="#" class="sub-item">Sub Item 01</a>
+                  <a href="#" class="sub-item">Sub Item 02</a>
+                  <a href="#" class="sub-item">Sub Item 03</a>
+                </div>
+            </div>
+            <div class="item"><a href="#"><i class="fas fa-desktop"></i>Home </a></div>
+            <div class="item"><a href="#"><i class="fas fa-desktop"></i>Home </a></div> 
+      </div>
+    </div>
+
+       <section class="main">
+          <h1>Sidebar Menu With<br>Sub-Menus</h1>
+      </section>
+
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+          
+          //jquery for toggle sub menus
+          $('.sub-btn').click(function(){
+            $(this).next('.sub-menu').slideToggle();
+            $(this).find('.dropdown').toggleClass('rotate');
+          });
+     
+          //jquery for expand and collapse the sidebar
+          $('.menu-btn').click(function(){
+            $('.side-bar').addClass('active');
+            $('.menu-btn').css("visibility", "hidden");
+          });
+     
+          $('.close-btn').click(function(){
+            $('.side-bar').removeClass('active');
+            $('.menu-btn').css("visibility", "visible");
+          });
+
+    });  
+    </script> 
+
+
+
+<!--<header class="showcase">
+  <div class="container showcase-inner">
+    <h1>Welcome</h1>
+    <p>
+      L’Oréal has set itself the mission of offering all women and men worldwide the best of cosmetics innovation in terms of quality
+       efficacy and safety. Here's a look at the Group’s latest stories.
+    </p>
+    <a href="#" class="btn"> Read more </a>
+  </div>
+</header> -->
+
+
+
+</body>
+</html>

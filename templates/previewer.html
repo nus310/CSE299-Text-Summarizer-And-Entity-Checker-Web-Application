@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Summarize Koro</title>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />  
+
+           <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="static/css/homeStyle.css" rel="stylesheet">
+
+
+<style type="text/css">
+	.main-section{
+	margin:0 auto;
+	padding: 20px;
+	margin-top: 100px;
+	background-color: #fff;
+	box-shadow: 0px 0px 20px #c1c1c1;
+}
+#custom_card{
+	background-color:grey;
+	color:#fff;
+	padding:10px;
+}
+#custom_card2{
+	background-color:#383838;
+	color:#fff;
+	padding:10px;
+}
+
+
+footer{
+    background-color: #111;
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 40px ;
+    color: white;
+  }
+.footer-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center ;
+}
+  
+.footer-content h3{
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 3rem;
+ 
+
+}
+
+.footer-content p{
+	max-width:500px;
+	margin:10px auto;
+	line-height:28px;
+	font-size:14px;
+   
+}
+.socials{
+	list-style: none;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.socials li{
+	margin: 0 10px;
+	align-items: center;
+	
+}
+.socials a{
+	text-decoration:none;
+	color: white;	
+}
+.socials a i{
+	font-size:1.1rem;
+}
+.socials a:hover i{
+	color:blue;
+}
+.footer-bottom{
+	background:#000;
+	width:100vw;
+	padding:10px 0;
+	text-align: center;
+	
+}
+.footer-bottom p{
+	font-size: 14px;
+	word-spacing:2px;
+	text-align: center;
+	text-transform:capitalize;
+
+}
+
+.footer-bottom span{
+	text-transform: uppercase;
+	opacity: .4;
+	font-weight: 200;
+}
+</style>
+  
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div style="background-color: #8b8484; font-size: 30px;" class="navbar-fixed">
+        <nav style="width: 100%;" class="grey darken-4" role="navigation">
+         <div style="width: 20%; float: left;" class="nav-wrapper container">
+          <a style="float: left; margin-right: 1px; color: white;" href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+           <a id="logo-container" href="#" class="brand-logo" style="color: white;">Summaryzer</a>
+            </div>
+          <div>
+            <ul style="list-style-type: none;" class="right hide-on-med-and-down">
+              <li style="margin-left: 5px;"><a href="{{url_for('Main_home')}}">Home</a></li>
+              <li style="margin-left: 5px;"><a href="{{url_for('home')}}">Summarizer</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('compareSummary')}}">Compare Summarizers</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('textType')}}">Text Classifier</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('wordinfo')}}">Token information</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('index_saima')}}">Entity Checker</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('previewer')}}">Previewer</a></li>
+                 <li style="margin-left: 5px;"><a href="{{url_for('index_saima')}}">Guideline</a></li>
+            </ul>
+           </div> 
+         
+       </nav>
+     </div>
+     <ul style="list-style-type: none; background-color: black;" id="nav-mobile" class="sidenav">
+        <li><h2></h2></li>
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('Main_home')}}">Home</a></li>
+
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('home')}}">Summarizer</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('compareSummary')}}">Compare</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('textType')}}">Text Classifier</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('wordinfo')}}">Token information</a></li>
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('basic_api')}}"> Token information using API</a></li><br>
+        <br><li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('index_saima')}}">Entity Checker</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="#contactme">Guideline</a></li>
+      </ul>
+    <section class="slider">
+        <div id="index-banner" class="parallax-container">
+           <ul class="slides">
+            <li>
+              <img src="../static/img/img_21.jpg" alt="Unsplashed background img 1" alt="">
+ 
+              <div class="caption center-align">
+                <br> <br> <br><h1 style="margin-left: 29% ;font-weight: bolder ;color: rgb(14, 13, 13); text-shadow: 2px 2px 2px rgb(82, 79, 79);">Entity Checker</h1>
+                 <h4  style= "font-weight: bolder; color: rgb(14, 13, 13)" class="dark gray-text text-lighten-3 hide-on-small-only">
+                <span style="margin-left: 29%;">Using SpaCy Library</span> 
+                </h4>
+               
+                 <div class="row center">
+                <a style="margin-left: 30%;" href="{{url_for('home')}}" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Refresh</a>
+              </div>
+              </div>
+            </li>
+            <li>
+             <img src="../static/img/img_31.jpg" alt="Unsplashed background img 1">
+              <div class="caption left-align">
+
+               <br> <br> <br> <h1 style="font-weight: bolder ;color: rgb(15, 1, 1); text-shadow: 5px 5px 5px rgb(112, 110, 110);">Entity Checker</h1>
+                <h4
+                 style="font-weight: bolder; color: rgb(1, 12, 14);" class="black-text text-lighten-3 hide-on-small-only">
+                 To display Entities
+                </h4>
+                <a href="#aboutapp" class="btn btn-large waves-effect waves-light light-blue lighten-1">Learn More</a>
+              </div>
+            </li>
+         
+          </ul>
+        </div>
+      </section> <br><br><br>
+
+
+<div class="container" >
+
+	<form method="POST" action="{{ url_for('preview')}}">
+		<textarea rows="5" cols="5" required="true" name="newtext" class="form-control">
+		</textarea>
+		<button type="reset" class="btn btn-primary"><i class="fa fa-eraser"></i> Clear</button>
+        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+	</form>
+</div> <br><br>
+
+ <!-- Footer start -->
+		<footer>
+		<div class = "footer-content">
+		<h3 style="Arial, Helvetica, sans-serif">SUMMARIZE KORO</h3>
+		<p style="Arial, Helvetica, sans-serif"> A web application for Text Summarization, Entity Check & Word Information & <br> it is build with NLP and ML.</p>
+		<ul class = "socials">
+		<li><a href="https://facebook.com/jcharistech" target="_blank" class="white-text" ><i class="fab fa-facebook fa-4x"></i></a></li>
+		<li><a href="https://facebook.com/jcharistech" target="_blank" class="white-text"><i class="fab fa-twitter fa-4x"></i></a></li>
+		<li><a href="https://github.com/rokeya/" target="_blank" class="white-text"><i class="fab fa-github-square fa-4x"></i></a></li>
+		<li><a href="https://gh.linkedin.com/in/jesiel-emmanuel-agbemabiase-6935b690" target="_blank" class="white-text"><i class="fab fa-linkedin fa-4x"></i></a> </li>
+		<li><a href="https://www.youtube.com/channel/UC2wMHF4HBkTMGLsvZAIWzRg" target="_blank" class="white-text"><i class="fab fa-youtube-square fa-4x"></i></a></li>
+		<li></li>
+		<li></li>
+		
+		</ul>
+		</div>
+
+		<div class = "footer-bottom" >
+		    <p>&copy; 2021 summarize koro, Devolped by Summarize Koro team</p>
+        </div>
+		</footer> 
+
+		
+		<!-- Footer ends -->
+
+
+
+     <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="static/js/materialize.js"></script>
+      <script src="static/js/init.js"></script>
+      <script>
+        var slider = document.getElementById("line");
+        var selector = document.getElementById("selector");
+
+        slider.oninput = function(){
+          selector.style.left = this.value + "%";
+        }
+      </script>
+      <script>
+        function myFunction() {
+          var copyText = document.getElementById("myInput");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999)
+          document.execCommand("copy");
+          alert("Copied the text: " + copyText.value);
+        }
+        </script>
+
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/main.js')}}"></script>
+<script type="text/javascript">
+	$('.file_upload').file_upload();
+</script>
+</body>
+</html>
+
+</body>
+</html>

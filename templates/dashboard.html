@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500&display=swap" rel="stylesheet">
+    <!-- bootstrap cdn -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    
+  
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/dashboard.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- <div class="first_layer">
+    <div class="container">
+        <div class="cards_wrap">
+            <div class="card_item">
+                <div class="card_inner">
+                    <img src="..//static/img/summarize.jpg.png">
+                    <div class="role_name"> TEXT SUMMARIZER </div>
+                </div>
+
+             </div>
+             <div class="card_item">
+                <div class="card_inner">
+                    <img src="..//static/img/summarize.jpg.png">
+                    <div class="role_name"> TEXT SUMMARIZER </div>
+                </div>
+
+             </div>
+
+             <div class="card_item">
+                <div class="card_inner">
+                    <img src="..//static/img/summarize.jpg.png">
+                    <div class="role_name"> TEXT SUMMARIZER </div>
+                </div>
+
+             </div>
+
+             <div class="card_item">
+                <div class="card_inner">
+                    <img src="..//static/img/summarize.jpg.png">
+                    <div class="role_name"> TEXT SUMMARIZER </div>
+                </div>
+
+             </div>
+             <div class="card_item">
+                <div class="card_inner">
+                    <img src="..//static/img/summarize.jpg.png">
+                    <div class="role_name"> TEXT SUMMARIZER </div>
+                </div>
+
+             </div>
+
+             <div class="card_item">
+                <div class="card_inner">
+                    <img src="..//static/img/summarize.jpg.png">
+                    <div class="role_name"> TEXT SUMMARIZER </div>
+                </div>
+
+             </div>
+        
+        
+          
+        </div>
+
+    </div>
+
+
+</div> -->
+
+
+<div class="container">
+    <!-- card 1 -->
+    <div class="card">
+        <div class="imgbx">
+            <img src="..//static/img/summarize.jpg.png">
+        </div>
+         <div class="content">
+             <h4>SUMMARIZER</h4>
+                <div class = "container2">
+                    <a  href="{{url_for('home')}}">
+                        <button class = "btn btn6"> View </button> 
+                    </a>
+                </div> 
+        </div>
+    </div>
+
+    <!-- card 2 -->
+    <div class="card">
+        <div class="imgbx">
+            <img src="..//static/img/summarize.jpg.png">
+        </div>
+         <div class="content">
+             <h4>COMPARE SUMMARIZERS</h4>
+                <div class = "container2">
+                    <a  href="{{url_for('compareSummary')}}">
+                        <button class = "btn btn6"> View </button> 
+                    </a>
+                </div>
+        </div>
+    </div>
+
+    <!-- card 3 -->
+    <div class="card">
+        <div class="imgbx">
+            <img src="..//static/img/summarize.jpg.png">
+        </div>
+         <div class="content">
+             <h4>TEXT CLASSIFIER</h4>
+                <div class = "container2">
+                    <a  href="{{url_for('textType')}}">
+                        <button class = "btn btn6" > View </button> 
+                    </a>
+                </div>
+        </div>
+    </div>
+
+
+    <!-- card 4 -->
+    <div class="card">
+        <div class="imgbx">
+            <img src="..//static/img/summarize.jpg.png">
+        </div>
+         <div class="content">
+             <h4>TOKEN INFORMATION</h4>
+                <div class = "container2">
+                    <a  href="{{url_for('index')}}">
+                        <button class = "btn btn6" > View </button> 
+                    </a>
+                </div>
+        </div>
+    </div>
+
+     <!-- card 5  -->
+    <div class="card">
+        <div class="imgbx">
+            <img src="..//static/img/summarize.jpg.png">
+        </div>
+         <div class="content">
+             <h5>Token Information WITH API</h5>
+                  <div class = "container2">
+                    <a  href="{{url_for('basic_api')}}">
+                        <button class = "btn btn6" > View </button> 
+                    </a>
+                </div>
+           
+        </div>
+    </div>
+
+    <!-- card 6  -->
+    <div class="card">
+        <div class="imgbx">
+            <img src="..//static/img/summarize.jpg.png">
+        </div>
+         <div class="content">
+             <h4>Api Analysis</h4>
+                <div class = "container2">
+                    <a  href="{{url_for('index')}}">
+                        <button class = "btn btn6" > View </button> 
+                    </a>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- bootstrap JS, jquery, POPPER -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

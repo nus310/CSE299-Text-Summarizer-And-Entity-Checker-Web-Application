@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarizer & Entity Checker</title>
+
+     
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="static/css/homeStyle.css" rel="stylesheet">
+<style>	
+ 
+footer{
+    background-color: #111;
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 40px ;
+    color: white;
+  }
+.footer-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center ;
+}
+  
+.footer-content h3{
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 3rem;
+ 
+
+}
+
+.footer-content p{
+	max-width:500px;
+	margin:10px auto;
+	line-height:28px;
+	font-size:14px;
+   
+}
+.socials{
+	list-style: none;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.socials li{
+	margin: 0 10px;
+	align-items: center;
+	
+}
+.socials a{
+	text-decoration:none;
+	color: white;	
+}
+.socials a i{
+	font-size:1.1rem;
+}
+.socials a:hover i{
+	color:blue;
+}
+.footer-bottom{
+	background:#000;
+	width:100vw;
+	padding:10px 0;
+	text-align: center;
+	
+}
+.footer-bottom p{
+	font-size: 14px;
+	word-spacing:2px;
+	text-align: center;
+	text-transform:capitalize;
+
+}
+
+.footer-bottom span{
+	text-transform: uppercase;
+	opacity: .4;
+	font-weight: 200;
+}
+
+</style>
+</head>
+<body>
+  
+    <div style="background-color: #8b8484; font-size: 30px;" class="navbar-fixed">
+        <nav style="width: 100%;" class="grey darken-4" role="navigation">
+         <div style="width: 20%; float: left;" class="nav-wrapper container">
+          <a style="float: left; margin-right: 1px; color: white;" href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+           <a id="logo-container" href="#" class="brand-logo" style="color: white;">Summaryzer</a>
+            </div>
+          <div>
+            <ul style="list-style-type: none;" class="right hide-on-med-and-down">
+              <li style="margin-left: 5px;"><a href="{{url_for('Main_home')}}">Home</a></li>
+              
+              <li style="margin-left: 5px;"><a href="{{url_for('home')}}">Summarizer</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('compareSummary')}}">Compare Summarizers</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('textType')}}">Text Classifier</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('wordinfo')}}">Token information</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('index_saima')}}">Entity Checker</a></li>
+              <li style="margin-left: 5px;"><a href="https://drive.google.com/file/d/1EmRrHQ2VPFoUMnOxgCJyyRh-iUElbowC/view?usp=sharing">Guideline</a></li>
+            </ul>
+           </div>
+         
+       </nav>
+     </div>
+     <ul style="list-style-type: none; background-color: black;" id="nav-mobile" class="sidenav">
+        <li><h2></h2></li>
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('Main_home')}}">Home</a></li>
+
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('home')}}">Summarizer</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('compareSummary')}}">Compare</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('textType')}}">Text Classifier</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('wordinfo')}}">Token information</a></li>
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('basic_api')}}"> Token information using API</a></li><br>
+        <br><li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('index_saima')}}">Entity Checker</a></li>
+          <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="https://drive.google.com/file/d/1EmRrHQ2VPFoUMnOxgCJyyRh-iUElbowC/view?usp=sharing">Guideline</a></li>
+      </ul>
+      <!--Slider -->
+      <section class="slider">
+        <div id="index-banner" class="parallax-container">
+           <ul class="slides">
+            <li>
+              <img src="https://i.pinimg.com/originals/4d/e2/b6/4de2b6eb4cb05b22c2e7764fd70d237b.jpg" alt="Unsplashed background img 1" alt="">
+              <div class="caption center-align">
+                <h2 style="margin-left: 30% ;font-weight: bolder ;color: rgb(14, 13, 13); text-shadow: 2px 2px 2px rgb(82, 79, 79);">Text Summarization Simplified</h2>
+                <h5 style="font-weight: bolder; color: rgb(14, 13, 13)" class="dark gray-text text-lighten-3 hide-on-small-only">
+                <span style="margin-left: 30%;">Using SpaCy, Gensim, NLTK and Sumy Summarizers</span>
+                </h5>
+               
+                 <div class="row center">
+                <a style="margin-left: 30%;" href="{{url_for('home')}}" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Refresh</a>
+              </div>
+              </div>
+            </li>
+            <li>
+             <img src="https://aiimi.imgix.net/assets/images/Paul_maker_Aiimi_InsightMaker_text_summarisation_AI.jpg?auto=format%2Ccompress&domain=aiimi.imgix.net&ixlib=php-3.3.0" alt="Unsplashed background img 1">
+              <div class="caption left-align">
+                <h2 style="font-weight: bolder ;color: rgb(15, 1, 1); text-shadow: 5px 5px 5px rgb(112, 110, 110);">Text Summarization Simplified</h2>
+                <h5 style="font-weight: bolder; color: rgb(1, 12, 14);" class="black-text text-lighten-3 hide-on-small-only">
+                 NLP and ML based App
+                </h5>
+                <a href="#aboutapp" class="btn btn-large waves-effect waves-light light-blue lighten-1">Learn More</a>
+              </div>
+            </li>
+         
+          </ul>
+        </div>
+      </section>
+      
+     <!-- Start of Main Section -->
+     <div class="container">
+        <div class="section">
+           
+          <!--   Icon Section   -->
+          <div style="text-align: center;" class="row">
+            <div class="input-field col s12 m10">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+               <form method="POST" action="/analyze_summary">
+             <textarea style="width: 60%;" id="rawtext" name="rawtext" cols="5" rows="10" class="form-control" required="true" placeholder="Enter Text Here"></textarea>
+              
+             <br/>
+             <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">Clear</button>
+              <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Summarize</button>
+              <br><br>
+                <p style="width: 60%;" class="range-field">
+                  <input  type="range" name="lineSlider" id="line" min="1" max="50" value="25" />
+                  <label style="font-size: 20px; font-weight: bold;" for="">Select line limit</label>
+
+                </p>
+              
+              
+            </form>
+              </div>
+            </div>
+    
+          </div>
+    <br><br>
+            <div style="text-align: center;" class="row">
+            <div class="input-field col s12 m10">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+               <form method="POST" action="/analyze_url">
+             <input style="width: 60%; border: 1px solid black;" type="text" name="raw_url" placeholder="Enter URL Here" required="true">
+             <br>
+             <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">Clear</button>
+              <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Summarize</button>
+
+              <br><br>
+              <div style="text-align: center; width: 60%;">
+                <p class="range-field">
+                  <input type="range" name="lineSlider" id="line" min="1" max="50" value="25" />
+                  <label style="font-size: 20px; font-weight: bold;" for="">Select line limit</label>
+
+                </p>
+              </div>
+            </form>
+              </div>
+            </div>
+    
+          </div>
+
+          <br><br>
+          <!--image to text-->
+          <div style="text-align: center;" class="text-center">
+            <h1 style="font-size: 30px;">UPLOAD IMAGE BELOW</h1>
+            <form method="POST" enctype="multipart/form-data" action="/picture">
+                <input type="file" class="btn btn-dark" name="photo"><br><br>
+                <input type = 'submit' class="btn btn-dark" >
+
+                <br><br>
+              <div style="text-align: center; width: 60%;">
+                <p class="range-field">
+                  <input type="range" name="lineSlider" id="line" min="1" max="50" value="25" />
+                  <label style="font-size: 20px; font-weight: bold;" for="">Select line limit</label>
+
+                </p>
+              </div>
+
+            </form>
+        </div>
+    <br><br>
+    <!--speech to text-->
+    <div style="text-align: center;" class="text-center">
+      <h1 style="font-size: 30px;">UPLOAD AUDIO BELOW</h1>
+      <form method="POST" enctype="multipart/form-data" action="/audio">
+          <input type="file" class="btn btn-dark" name="audio"><br><br>
+          <input type = 'submit' class="btn btn-dark" >
+
+          <br><br>
+        <div style="text-align: center; width: 60%;">
+          <p class="range-field">
+            <input type="range" name="lineSlider" id="line" min="1" max="50" value="25" />
+            <label style="font-size: 20px; font-weight: bold;" for="">Select line limit</label>
+
+          </p>
+        </div>
+
+      </form>
+  </div>
+  <br><br>
+  <!--pdf to text-->
+  <div style="text-align: center;" class="text-center">
+    <h1 style="font-size: 30px;">UPLOAD PDF BELOW</h1>
+    <form method="POST" enctype="multipart/form-data" action="/pdf">
+        <input type="file" class="btn btn-dark" name="pdf"><br><br>
+        <input type = 'submit' class="btn btn-dark" >
+
+        <br><br>
+      <div style="text-align: center; width: 60%;">
+        <p class="range-field">
+          <input type="range" name="lineSlider" id="line" min="1" max="50" value="25" />
+          <label style="font-size: 20px; font-weight: bold;" for="">Select line limit</label>
+
+        </p>
+      </div>
+
+    </form>
+</div>
+<br><br>
+<!--doc to text-->
+<div style="text-align: center;" class="text-center">
+  <h1 style="font-size: 30px;">UPLOAD DOC BELOW</h1>
+  <form method="POST" enctype="multipart/form-data" action="/doc">
+      <input type="file" class="btn btn-dark" name="doc"><br><br>
+      <input type = 'submit' class="btn btn-dark" >
+
+      <br><br>
+    <div style="text-align: center; width: 60%;">
+      <p class="range-field">
+        <input type="range" name="lineSlider" id="line" min="1" max="50" value="25" />
+        <label style="font-size: 20px; font-weight: bold;" for="">Select line limit</label>
+
+      </p>
+    </div>
+
+  </form>
+</div>
+<br><br>
+<!--video to text-->
+<div style="text-align: center;" class="text-center">
+  <h1 style="font-size: 30px;">UPLOAD VIDEO BELOW</h1>
+  <form method="POST" enctype="multipart/form-data" action="/video">
+      <input type="file" class="btn btn-dark" name="video"><br><br>
+      <input type = 'submit' class="btn btn-dark" >
+
+      <br><br>
+    <div style="text-align: center; width: 60%;">
+      <p class="range-field">
+        <input type="range" name="lineSlider" id="line" min="1" max="50" value="25" />
+        <label style="font-size: 20px; font-weight: bold;" for="">Select line limit</label>
+
+      </p>
+    </div>
+
+  </form>
+</div>
+        </div>
+      </div>
+      <!-- End -->
+
+      
+       <!-- Result Display-->
+       <section class="section section-solutions-about grey darken-2">
+        <div style="text-align: center;" class="container white-text">
+        
+             <!--   Icon Section   -->
+             <div class="row">
+               <div style="padding: 10px; background-color: rgb(114, 113, 113); width: 48%; float: left;" class="col s12 m6">
+                 <div class="icon-block">
+                   <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+                   <h5 class="center">Your Text</h5>
+                    <p>Reading Time: <span style="font-weight: bolder ;color:#0c0c0c;">{{ final_reading_time }} min </span></p>
+                   <p class="light">{{ctext}}</p>
+                   <div class="alert alert-info" role="alert"><p>Time Elapsed: <span style="font-weight: bolder ;color:#0c0c0c;">{{ final_time }} mins </span></p><br/>
+                    <p>Total Characters: <span style="font-weight: bolder ;color:#0c0c0c;">{{ lengthText }} </span></p>
+                    
+               </div>
+                 </div>
+               </div>
+       
+               <div style="padding: 10px ;width: 48%; float: left;" class="col s12 m6 grey darken-3">
+                 <div class="icon-block">
+                   <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+                   <h5 class="center">Summarized</h5>
+                     <div class="" role="alert">
+                     <p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time }} min </span></p>
+
+                    </div>
+                   <p id="#text" class="light">{{ final_summary }}</p>
+                   <br>   
+                   <p>Total Characters: <span style="font-weight: bolder ;color:#0091EA;">{{ lengthSummary }} </span></p>
+ 
+                 </div>
+               </div>
+       
+             </div>
+         </div>
+                
+       </section>
+       <div style="clear: both;"></div>
+
+       <div style="clear: both;text-align: center;margin-top: 30px;">
+        <form method="POST" action="/save">
+          <textarea style="width: 60%;" name="rawtext" cols="5" rows="10" class="form-control" required="true" placeholder="Enter Text Here"></textarea>  
+          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Save</button>
+         </form>
+         <div>
+          <p>{{ info }}</p>
+         </div>
+         <br>
+
+         <form action="/copy">
+           <textarea style="width: 60%;" name="rawtext1" id="myInput" required="true" placeholder="Enter Text Here" cols="30" rows="10"></textarea>
+          <button class="btn btn-primary" class="copybutton" onclick="myFunction()">Copy</button>
+         </form>
+
+         
+       </div> <br> <br>
+       
+ 
+      <!--  <footer style="clear: both;" class="page-footer grey darken-4">
+        <div class="container" id="aboutapp">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">About Summary App</h5>
+              <p class="grey-text text-lighten-4">Using Spacy,NLTk and Gensim for Text Summarization.</p>
+    
+            </div>
+          
+       <div class="col l3 s12">
+              <h5 class="white-text">Connect With Us</h5>
+              <ul>
+                <a href="https://facebook.com/jcharistech" target="_blank" class="white-text">
+                <i class="fab fa-facebook fa-4x"></i>
+              </a>
+              <a href="https://gh.linkedin.com/in/jesiel-emmanuel-agbemabiase-6935b690" target="_blank" class="white-text">
+                <i class="fab fa-linkedin fa-4x"></i>
+              </a>
+              <a href="https://www.youtube.com/channel/UC2wMHF4HBkTMGLsvZAIWzRg" target="_blank" class="white-text">
+                <i class="fab fa-youtube-square fa-4x"></i>
+              </a>
+               <a href="https://github.com/rokeya/" target="_blank" class="white-text">
+                <i class="fab fa-github-square fa-4x"></i>
+              </a>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>-->
+        <!-- Footer start -->
+		<footer>
+		<div class = "footer-content">
+		<h3 style="Arial, Helvetica, sans-serif">SUMMARIZE KORO</h3>
+		<p style="Arial, Helvetica, sans-serif"> A web application for Text Summarization, Entity Check & Word Information & <br> it is build with NLP and ML.</p>
+		<ul class = "socials">
+		<li><a href="https://facebook.com/jcharistech" target="_blank" class="white-text" ><i class="fab fa-facebook fa-4x"></i></a></li>
+		<li><a href="https://facebook.com/jcharistech" target="_blank" class="white-text"><i class="fab fa-twitter fa-4x"></i></a></li>
+		<li><a href="https://github.com/rokeya/" target="_blank" class="white-text"><i class="fab fa-github-square fa-4x"></i></a></li>
+		<li><a href="https://gh.linkedin.com/in/jesiel-emmanuel-agbemabiase-6935b690" target="_blank" class="white-text"><i class="fab fa-linkedin fa-4x"></i></a> </li>
+		<li><a href="https://www.youtube.com/channel/UC2wMHF4HBkTMGLsvZAIWzRg" target="_blank" class="white-text"><i class="fab fa-youtube-square fa-4x"></i></a></li>
+		<li></li>
+		<li></li>
+		
+		</ul>
+		</div>
+
+		<div class = "footer-bottom" >
+		    <p>&copy; 2021 summarize koro, Devolped by Summarize Koro team</p>
+        </div>
+		</footer>
+
+		
+		<!-- Footer ends -->
+
+
+
+
+
+    
+    
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="static/js/materialize.js"></script>
+      <script src="static/js/init.js"></script>
+      <script>
+        var slider = document.getElementById("line");
+        var selector = document.getElementById("selector");
+
+        slider.oninput = function(){
+          selector.style.left = this.value + "%";
+        }
+      </script>
+      <script>
+        function myFunction() {
+          var copyText = document.getElementById("myInput");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999)
+          document.execCommand("copy");
+          alert("Copied the text: " + copyText.value);
+        }
+        </script>
+     
+    <!-- Finished -->
+
+
+
+    
+
+
+
+
+
+
+
+    
+</body>
+</html>

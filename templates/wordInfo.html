@@ -1,0 +1,624 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>try word info</title>
+	<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500&display=swap" rel="stylesheet">
+
+
+<!-- bootstrap cdn -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!-- <link rel="stylesheet" href="{{ url_for('static', filename = 'css/wordInfoStyle.css') }}"> -->
+
+    
+<!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="static/css/homeStyle.css" rel="stylesheet">
+
+	
+<style>	
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+	
+
+}
+.body{
+
+    font-family: 'Heebo', sans-serif;
+    line-height: 1.4;
+	height: auto;
+	width: auto;
+	background-color: red;
+	
+	
+}
+ .container{
+	 
+    max-width: 900px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 3rem;
+
+}
+
+
+.container_analysis{
+	 
+    max-width: 900px;
+    margin: auto;
+    overflow: hidden;
+    padding: 10px 50px;
+	
+}
+
+.other-section{
+	 
+    max-width: 900px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 1rem;
+
+}
+
+
+ footer{
+    background-color: #111;
+    height: auto;
+	
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 40px ;
+    color: white;
+  }
+.footer-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center ;
+}
+  
+.footer-content h3{
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 3rem;
+ 
+
+}
+
+.footer-content p{
+	max-width:500px;
+	margin:10px auto;
+	line-height:28px;
+	font-size:14px;
+   
+}
+.socials{
+	list-style: none;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.socials li{
+	margin: 0 10px;
+	align-items: center;
+	
+}
+.socials a{
+	text-decoration:none;
+	color: white;	
+}
+.socials a i{
+	font-size:1.1rem;
+}
+.socials a:hover i{
+	color:blue;
+}
+.footer-bottom{
+	background:#000;
+	width:100vw;
+	padding:10px 0;
+	text-align: center;
+	
+}
+.footer-bottom p{
+	font-size: 14px;
+	word-spacing:2px;
+	text-align: center;
+	text-transform:capitalize;
+
+}
+
+.footer-bottom span{
+	text-transform: uppercase;
+	opacity: .4;
+	font-weight: 200;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div style="background-color: #8b8484; font-size: 30px;" class="navbar-fixed">
+        <nav style="width: 100%;" class="grey darken-4" role="navigation">
+         <div style="width: 20%; float: left;" class="nav-wrapper container">
+		 <a style="float: left; margin-right: 1px; color: white;" href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <!--    <a id="logo-container" href="#" class="brand-logo" style="color: white;">Summarizer</a> -->
+          
+         
+        </div>
+	
+          <div>
+            <ul style="list-style-type: none;" class="right hide-on-med-and-down">
+              <li style="margin-left: 5px;"><a href="{{url_for('Main_home')}}">Home</a></li>
+             <!-- <li style="margin-left: 5px;"><a href="{{url_for('dashboard')}}">Dashboard</a></li>Slider -->
+              <li style="margin-left: 5px;"><a href="{{url_for('home')}}">Summarizer</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('compareSummary')}}">Compare Summarizers</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('textType')}}">Text Classifier</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('wordinfo')}}">Token information</a></li>
+               <li style="margin-left: 5px;"><a href="{{url_for('index_saima')}}">Entity Checker</a></li>
+                <li style="margin-left: 5px;"><a href="https://drive.google.com/file/d/1EmRrHQ2VPFoUMnOxgCJyyRh-iUElbowC/view?usp=sharing">Guideline</a></li>
+            </ul>
+           </div>
+          
+       </nav>
+</div>
+
+<ul style="list-style-type: none; background-color: black;" id="nav-mobile" class="sidenav">
+        <li><h2></h2></li>
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('Main_home')}}">Home</a></li>
+      
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('home')}}">Summarizer</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('compareSummary')}}">Compare</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('textType')}}">Text Classifier</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('wordinfo')}}">Token information</a></li>
+        <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('basic_api')}}"> Token information using API</a></li><br>
+        <br><li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="{{url_for('index_saima')}}">Entity Checker</a></li>
+         <li><a style="color: white; font-size: 25px; font-weight: bold ;font-family: 'Times New Roman', Times, serif" href="https://drive.google.com/file/d/1EmRrHQ2VPFoUMnOxgCJyyRh-iUElbowC/view?usp=sharing">Guideline</a></li>
+</ul>
+
+ <!--Slider -->
+      <section class="slider">
+        <div id="index-banner" class="parallax-container">
+           <ul class="slides">
+            <li>
+              <img src="../static/img/img_17.jpg" alt="Unsplashed background img 1" alt="">
+              <div class="caption center-align">
+                <h2 style="margin-left:18% ;font-weight: bolder ;color: rgb(14, 13, 13); text-shadow: 2px 2px 2px rgb(82, 79, 79);">Token Information</h2>
+                <h5 style="font-weight: bolder; color: rgb(14, 13, 13)" class="dark gray-text text-lighten-3 hide-on-small-only">
+                
+				<span style="margin-left:19%;">Build With SpaCy & Textblob library</span>
+                </h5>
+               
+                 <div class="row center">
+                <a style="margin-left: 20%;" href="{{url_for('home')}}" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Refresh</a>
+              </div>
+              </div>
+            </li>
+            <li>
+             <img src="../static/img/img_16.jpg">
+              <div class="caption left-align">
+                <h2 style="font-weight: bolder ;color: rgb(15, 1, 1); text-shadow: 5px 5px 5px rgb(112, 110, 110);">Text Summarization Simplified</h2>
+                <h5 style="font-weight: bolder; color: rgb(1, 12, 14);" class="black-text text-lighten-3 hide-on-small-only">
+                 NLP and ML based App
+                </h5>
+                <a href="#aboutapp" class="btn btn-large waves-effect waves-light light-blue lighten-1">Learn More</a>
+              </div>
+            </li>
+         
+          </ul>
+        </div>
+      </section>
+
+
+
+	<div class="showcase">
+		<div class="container showcase-inner"> 
+
+	<br><br><div class = "container">
+		<form method="POST" action="/analyze" class="formgroup">
+			<h6> Write your Text: </h6>
+			<textarea id="text" name="rawtext" cols="5" rows="10" class="form-control" required = "true" placeholder="Enter Text Here" > </textarea> <br>	
+
+			<button type="reset" class="btn btn-outline-success">CLEAR</button>
+			<button type="submit" class="btn btn-outline-primary">NLPiffy</button>
+		</form>
+	</div> 
+
+
+
+
+
+
+
+
+	<!--url to text-->
+            <div style="text-align: center;" class="row">
+            <div class="input-field col s12 m10">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+               <form method="POST" action="/url_word">
+             <input style="width: 60%; border: 1px solid black;" type="text" name="raw_url" placeholder="Enter URL Here" required="true">
+             <br>
+             <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">Clear</button>
+              <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Summarize</button>
+              
+            </form>
+              </div>
+            </div>
+    
+          </div>
+          <br><br> 
+
+
+
+
+          <!--image to text-->
+          <div style="text-align: center;" class="text-center">
+            <h1 style="font-size: 30px;">UPLOAD IMAGE BELOW</h1>
+            <form method="POST" enctype="multipart/form-data" action="/pic_word">
+                <input type="file" class="btn btn-dark" name="photo"><br><br>
+                <input type = 'submit' class="btn btn-dark" >
+            </form>
+        </div>
+    <br><br>
+    <!--speech to text-->
+    <div style="text-align: center;" class="text-center">
+      <h1 style="font-size: 30px;">UPLOAD AUDIO BELOW</h1>
+      <form method="POST" enctype="multipart/form-data" action="/audio_word">
+          <input type="file" class="btn btn-dark" name="audio"><br><br>
+          <input type = 'submit' class="btn btn-dark" >
+      </form>
+  </div>
+  <br><br>
+  <!--pdf to text-->
+  <div style="text-align: center;" class="text-center">
+    <h1 style="font-size: 30px;">UPLOAD PDF BELOW</h1>
+    <form method="POST" enctype="multipart/form-data" action="/pdf_word">
+        <input type="file" class="btn btn-dark" name="pdf"><br><br>
+        <input type = 'submit' class="btn btn-dark" >
+    </form>
+</div>
+<br><br>
+<!--doc to text-->
+<div style="text-align: center;" class="text-center">
+  <h1 style="font-size: 30px;">UPLOAD DOC BELOW</h1>
+  <form method="POST" enctype="multipart/form-data" action="/doc_word">
+      <input type="file" class="btn btn-dark" name="doc"><br><br>
+      <input type = 'submit' class="btn btn-dark" >
+  </form>
+</div>
+<br><br>
+<!--video to text-->
+<div style="text-align: center;" class="text-center">
+  <h1 style="font-size: 30px;">UPLOAD VIDEO BELOW</h1>
+  <form method="POST" enctype="multipart/form-data" action="/video_word">
+      <input type="file" class="btn btn-dark" name="video"><br><br>
+      <input type = 'submit' class="btn btn-dark" >
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 <!-- Analysis Begins Here  -->
+    <div class="container_analysis">
+		<div class="row">
+		  <div class="col">
+			
+			<div class="alert alert-info" role="alert" placeholder:>
+			    <p>Your Text was: <span style=" font-weight: bolder ; color: black ;"> {{ctext}}</span></p>
+			</div>
+
+			<div class="alert alert-info" role="alert">
+			    <p >Time Elapsed: <span style= "font-weight: bolder ;color:black;">{{ final_time }} </span></p> <br>
+		    </div>
+
+		  <div class="alert alert-info" role="alert">
+		         <p>Length of the text: <span style=" font-weight: bolder ; color: black ;">{{ text_length }} </span></p>
+		 </div>
+	</div>
+
+
+	 <!-- toggleable dynamic tab starts here -->
+	<div class="other-section">
+		<ul class="nav nav-pills">
+			<li class="nav-item"><a data-toggle = "pill" class= "nav-link active" href="#TOKEN"> TOKEN </a></li>
+			<li class="nav-item"><a data-toggle = "pill" class= "nav-link" href="#WORD_INFO"> WORD INFO </a></li>
+			<li class="nav-item"><a data-toggle = "pill" class= "nav-link" href="#NAMED_ENTITIES"> NAMED ENTITIES </a></li>
+			<li class="nav-item"><a data-toggle = "pill" class= "nav-link" href="#POS"> POS </a></li>
+			<li class="nav-item"><a data-toggle = "pill" class= "nav-link" href="#SENTIMENT"> SENTIMENT </a></li>
+			<li class="nav-item"><a data-toggle = "pill" class= "nav-link" href="#MEANING"> MEANING </a></li>
+			<!-- <li class="nav-item"><a data-toggle = "pill" class= "nav-link" href="#DISPLAY"> DISPLAY SENTENCE </a></li> -->
+		</ul>
+		
+
+		 <!-- TOKEN DISPLAY  -->
+		<div class="tab-content">
+			<div id="TOKEN" class="tab-pane active"> 
+			    <table class="table table-striped table-hover table-dark text-center">
+				    <thead>		
+					    <tr>
+						    <th >Token</th>
+					    </tr>
+							{% for i in custom_tokens %}
+				    </thead>
+				    <tbody>
+					    <tr>
+						    <td> {{ i }} </td>
+						</tr>
+					{% endfor %}
+
+			    </table>
+			</div>
+
+			<!-- WORD INFO DISPLAY  -->
+			<div id="WORD_INFO" class="tab-pane fade"> 
+				<table class="table table-striped table-hover table-dark text-center">
+					<thead>		
+						<tr>
+							<th>Token</th>
+							<th>Lemma</th>
+							<th>Shape</th>
+							<th>Alpha</th>
+							<th>Stopword</th>
+						</tr>
+						{% for i in custom_wordInfo %}
+					</thead>
+					<tbody>
+						<tr>
+							<td> {{ i[0] }} </td>
+							<td> {{ i[1] }} </td>
+							<td> {{ i[2] }} </td>
+							<td> {{ i[3] }} </td>
+							<td> {{ i[4] }} </td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+			<div id="NAMED_ENTITIES" class="tab-pane fade">
+				<table class="table table-striped table-hover table-dark text-center">
+					<thead>		
+						<tr>
+							<th>Entity</th>
+							<th>Label</th>
+							<th>explaination</th>
+					
+						</tr>
+						{% for i in custom_entities %}
+					</thead>
+					<tbody>
+						<tr>
+							<td> {{ i[0] }} </td>
+							<td> {{ i[1] }} </td>
+							<td> {{ i[2] }} </td>
+	
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+			<!-- POS DISPLAY -->
+			<div id="POS" class="tab-pane fade">
+				<table class="table table-striped table-hover table-dark text-center">
+					<thead>		
+						<tr>
+							<th>Token</th>
+							<th>Tag</th>
+							<th>Pos</th>
+							<th>Dep</th>
+					
+						</tr>
+						{% for i in custom_pos %}
+					</thead>
+					<tbody>
+						<tr>
+							<td> {{ i[0] }} </td>
+							<td> {{ i[1] }} </td>
+							<td> {{ i[2] }} </td>
+							<td> {{ i[3] }} </td>
+							
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+			</div>
+
+			 <!-- SENTIMENTS DISPLAY  -->
+			<div id="SENTIMENT" class="tab-pane fade">
+			    <table class="table table-striped table-hover table-dark text-center">
+				    <thead>		
+					    <tr>
+						    <th scope="col">Score</th>
+						    <th scope="col">Polarity</th>
+						    <th scope="col">Subjectivity</th>
+					    </tr>
+				    </thead>
+				    <tbody>
+					    <tr>
+						    <th scope="row"> Score </th>
+						    <td> {{ blob_sentiment }} </td>
+							<td> {{ blob_subjectivity }} </td>
+						</tr>
+			    </table>
+			</div>
+
+
+
+            <!-- MEANING DISPLAY  -->
+			<div id="MEANING" class="tab-pane fade">
+				<table class="table table-striped table-hover table-dark text-center">
+				    <thead>		
+					    <tr>
+						    <th scope="col">Token</th>
+						    <th scope="col">Meaning</th>  
+					    </tr>
+				    </thead>
+					{% for i in custom_tokens %}
+				    <tbody>
+					    <tr>
+						    <td> {{ i }} </td>
+							<td> <a href="http://www.dictionary.com/browse/{{i}}?s=" target="_blank" type="button" class="btn btn-primary" style="font-size:9px;color:#fff;"> View </a></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+			    </table>
+			</div>
+		
+		
+		</div>
+	</div>
+	
+
+	 <!-- WORD INFO DISPLAY -JSON FORMET   
+	<br> <br> <div class="container">
+		<pre>{{ result_json }}</pre>-->
+
+
+
+
+
+	</div>
+
+</div>
+</div> 
+
+
+ 
+        <!-- Footer start -->
+		<footer>
+		<div class = "footer-content">
+		<h3 style="Arial, Helvetica, sans-serif">SUMMARIZE KORO</h3>
+		<p style="Arial, Helvetica, sans-serif"> A web application for Text Summarization, Entity Check & Word Information & <br> it is build with NLP and ML.</p>
+		<ul class = "socials">
+		<li><a href="https://facebook.com/jcharistech" target="_blank" class="white-text" ><i class="fab fa-facebook fa-4x"></i></a></li>
+		<li><a href="https://facebook.com/jcharistech" target="_blank" class="white-text"><i class="fab fa-twitter fa-4x"></i></a></li>
+		<li><a href="https://github.com/rokeya/" target="_blank" class="white-text"><i class="fab fa-github-square fa-4x"></i></a></li>
+		<li><a href="https://gh.linkedin.com/in/jesiel-emmanuel-agbemabiase-6935b690" target="_blank" class="white-text"><i class="fab fa-linkedin fa-4x"></i></a> </li>
+		<li><a href="https://www.youtube.com/channel/UC2wMHF4HBkTMGLsvZAIWzRg" target="_blank" class="white-text"><i class="fab fa-youtube-square fa-4x"></i></a></li>
+		<li></li>
+		<li></li>
+		
+		</ul>
+		</div>
+
+		<div class = "footer-bottom" >
+		    <p>&copy; 2021 summarize koro, Devolped by Summarize Koro team</p>
+        </div>
+
+		</footer>
+
+		
+		<!-- Footer ends -->
+
+
+
+
+	<!-- TOKEN DISPLAY -->
+	<!--<div class = "container">
+		{% for i in custom_tokens %}
+		<li> {{ i }} </li>
+		{% endfor %}
+	</div>-->
+
+	<!-- WORD INFO DISPLAY -->
+	<!--<div class = "container">
+		{% for i in custom_wordInfo %}
+		<li> {{ i }} </li>
+		{% endfor %}
+	</div> -->
+
+	
+	<!-- POS DISPLAY -->
+	<!-- <div class = "container">
+		{% for i in custom_pos %}
+		<li> {{ i }} </li>
+		{% endfor %}
+	</div>-->
+	
+	<!-- ENTITIES DISPLAY -->
+
+     <!--<div class="container">
+		<pre>{{ custom_entities }}</pre>
+		
+	</div>-->
+
+	<!-- SENTIMENTS DISPLAY -->
+
+	<!--<div class="container">
+		<pre>{{ blob_sentiment }}</pre>
+	</div>
+
+	<div class="container">
+		<pre>{{ blob_subjectivity }}</pre>
+	</div> 
+		</div>
+	</div> -->
+
+
+
+
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="static/js/materialize.js"></script>
+      <script src="static/js/init.js"></script>
+      <script>
+        var slider = document.getElementById("line");
+        var selector = document.getElementById("selector");
+
+        slider.oninput = function(){
+          selector.style.left = this.value + "%";
+        }
+      </script>
+      <script>
+        function myFunction() {
+          var copyText = document.getElementById("myInput");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999)
+          document.execCommand("copy");
+          alert("Copied the text: " + copyText.value);
+        }
+        </script>
+
+
+
+
+    
+ <!-- bootstrap JS, jquery, POPPER -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+
+
+</html>
